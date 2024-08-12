@@ -1,17 +1,21 @@
-import PokemonCard from './PokemonCard';
 
-// TODO: import the PokemonContext and useContext
+import React, { useContext } from 'react';
+import PokemonCard from './PokemonCard';
+import PokemonContext from '../context/PokemonContext';
 
 const PokemonCollection = () => {
+  const { allPokemon } = useContext(PokemonContext);
 
-    // TODO: Replace this to get the pokemon from PokemonContext
-    const allPokemon = [];
+  return (
+    <div className="ui six cards">
+      {allPokemon?.map(pokemon => (
+        <PokemonCard
+          key={pokemon.id}
+          pokemon={pokemon}
+        />
+      ))}
+    </div>
+  );
+};
 
-    return (
-        <div className="ui six cards">
-            {allPokemon?.map(pokemon => <PokemonCard key={pokemon.id} />)}
-        </div>
-    )
-}
-
-export default PokemonCollection
+export default PokemonCollection;
